@@ -1,4 +1,4 @@
-<design:component >
+<design:component>
     <design:attribute name="objectApiName" label="Object API Name" 
                       description="objectApiName" 
                       default="Contact"
@@ -15,5 +15,10 @@
                       description="Component Title" 
                       required="true"
                       default="Update Information"/>
+    <design:attribute name="columns" label="Number of Columns"
+                      description="Please enter a number from 1 to 4"
+                      default="1"
+                      min="1" max="4"
+                      required="true"/>
     <design:attribute name="mode" label="Mode" datasource="Input,Output" required="true"/>
 </design:component>
