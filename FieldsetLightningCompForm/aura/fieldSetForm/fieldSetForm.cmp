@@ -6,6 +6,7 @@
     <aura:attribute name="iconName" type="String"/>
     <aura:attribute name="title" type="String"/>
     <aura:attribute name="columns" type="Integer"/>
+    <aura:attribute name="extraColumns" type="Integer"/>
     <aura:attribute name="mode" type="String"/>
     <aura:attribute name="inputModeBool" type="Boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -19,7 +20,7 @@
             <lightning:messages />
             <div class="slds-grid slds-wrap">
                 <aura:iteration items="{!v.fields}" var="field">
-                    <div class="{!'slds-col slds-size_1-of-'+v.columns}">
+                    <div class="{!'slds-size_1-of-'+v.columns+' slds-border_top'}">
                         <aura:if isTrue="{!v.inputModeBool == true? true: false}">
                             <lightning:inputField fieldName="{!field.fieldPath}"/>
                         </aura:if>
@@ -30,13 +31,17 @@
                                 </lightning:layoutitem>
                                 <lightning:layoutitem size="2">
                                     <lightning:buttonIcon iconName="utility:edit" variant="bare"
-                                                          alternativeText="edit"
-                                                          onclick="{!c.handleToggle}"/>
+                                                        alternativeText="edit"
+                                                        onclick="{!c.handleToggle}"/>
                                 </lightning:layoutitem>
                             </lightning:layout>
                         </aura:if>
                     </div>
                 </aura:iteration>
+                <aura:iteration items="{!v.fields}" var="field" end="{!v.extraColumns}">
+                    <div class="{!'slds-size_1-of-'+v.columns+' slds-border_top'}" />
+                </aura:iteration>
+                {!v.extraColumns}
             </div>
             <div class="slds-align--absolute-center slds-p-top--small">
                 <span class="{!and(v.mode =='Output', v.inputModeBool)? '':'slds-hide'}">

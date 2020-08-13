@@ -9,8 +9,11 @@
         action.setCallback(this, function(a) {
             var fields = a.getReturnValue();
             component.set("v.fields", fields);
+            var columns = component.get("v.columns");
+            var extraColumns = columns % (columns - (fields.length % columns));
+            component.set("v.extraColumns",extraColumns);
         });
-        $A.enqueueAction(action);        
+        $A.enqueueAction(action);
     },
     fireRefreshView : function(component, event, helper) {
         $A.get('e.force:refreshView').fire();
